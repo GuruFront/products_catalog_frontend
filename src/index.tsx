@@ -1,11 +1,11 @@
 import React from 'react';
-import ReactDOM from 'react-dom/client';
+import { createRoot } from 'react-dom/client';
 import reportWebVitals from './reportWebVitals';
 import Pages from "./pages";
 import './index.scss'
 
-const root = ReactDOM.createRoot(
-  document.getElementById('root') as HTMLElement
+const root = createRoot(
+  document.getElementById('root') as HTMLElement,
 );
 
 root.render(
