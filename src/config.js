@@ -2,3 +2,6 @@ export const API = 'https://prodcuts-catalog-git-main-ruslangunder-gmailcom.verc
 // export const API = 'http://localhost:8080/api';
 
 export const ONE_PAGE_PRODUCTS_COUNT = 8;
+
+export const ONE_PAGE_PRODUCTS_COUNT = 8;
+
