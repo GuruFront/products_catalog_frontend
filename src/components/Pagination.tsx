@@ -1,6 +1,5 @@
 import Button from "../ui/Button";
 import React from "react";
-import {ONE_PAGE_PRODUCTS_COUNT} from "../config";
 
 type PaginationProps = {
     currentValue: number
@@ -8,6 +7,9 @@ type PaginationProps = {
     currentProductsCount: number
     onChange: (i: number) => void
 }
+
+const ONE_PAGE_PRODUCTS_COUNT = 8
+
 
 const Pagination = (props: PaginationProps) => {
 
