@@ -1,5 +1,4 @@
 import React, {useState} from "react";
-import Loader from "./Loader";
 
 
 export type ProductProps = {
@@ -9,6 +8,7 @@ export type ProductProps = {
         basecolour: string
         season: string
         year: number
+        images: { product_img: string }[]
     }
 }
 
@@ -16,7 +16,7 @@ const ProductView = (props: ProductProps) => {
 
     const {
         productdisplayname,
-        product_img,
+        images,
         basecolour,
         season,
         year,
@@ -26,14 +26,15 @@ const ProductView = (props: ProductProps) => {
 
     return <a href="#"
               className="max-w-xs mx-4 mb-5 max-w-xs border-1 py-2 pt-0 border border-gray-200 rounded-lg
-               dark:bg-gray-700 dark:border-gray-600 w-full overflow-hidden">
+                dark:bg-gray-700 dark:border-gray-600 w-full overflow-hidden">
         <div
-            className="aspect-h-1 aspect-w-1 w-full overflow-hidden bg-gray-200 xl:aspect-h-8 xl:aspect-w-7border-b">
+            className="text-left aspect-h-1 aspect-w-1 w-full overflow-hidden bg-gray-200 xl:aspect-h-8
+                xl:aspect-w-7 border-b">
             <img
                 onLoad={() => {
                     setImgStatus(false)
                 }}
-                src={product_img}
+                src={images[0]?.product_img}
                 alt={productdisplayname}
                 className="h-full w-full object-contain object-center group-hover:opacity-75"
             />

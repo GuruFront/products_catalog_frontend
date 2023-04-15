@@ -8,8 +8,7 @@ type PaginationProps = {
     onChange: (i: number) => void
 }
 
-const ONE_PAGE_PRODUCTS_COUNT = 8
-
+const ONE_PAGE_PRODUCTS_COUNT = parseInt(process.env.REACT_APP_ONE_PAGE_PRODUCTS_COUNT ?? '8',10);
 
 const Pagination = (props: PaginationProps) => {
 
