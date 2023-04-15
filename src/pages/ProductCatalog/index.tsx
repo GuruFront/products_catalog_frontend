@@ -10,6 +10,8 @@ import CircularProgress from '@mui/material/CircularProgress';
 import {Box, Container, Grid} from "@mui/material";
 import Paper from '@mui/material/Paper';
 import {grey} from "@mui/material/colors";
+import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+
 
 interface Filters {
     categories: String[]
@@ -50,7 +52,7 @@ const ProductCatalog = () => {
 
 
     const onPageChanged = (i: number) => {
-        setProductsConfig({...productsConfig, page: i})
+        if (productsConfig.page !== i) setProductsConfig({...productsConfig, page: i})
     }
 
     const onFilterChanged = (filter: Filters) => {
@@ -68,9 +70,10 @@ const ProductCatalog = () => {
 
     return (
         <>
-            <Paper square elevation={5} sx={{p:2,   bgcolor: grey[900]}}>
+            <Paper square elevation={5} sx={{py: 2, bgcolor: grey[900]}}>
                 <Container maxWidth="xl">
-                    <SearchForm  onSumbit={onSearchTextChanged}/>
+
+                    <SearchForm onSumbit={onSearchTextChanged}/>
                 </Container>
             </Paper>
 
@@ -78,15 +81,18 @@ const ProductCatalog = () => {
                 {products.length > 0 &&
                     <Select title={"Sort"} onChange={onSortChanged} values={['Year up', 'Year down']}/>
                 }
+
                 <Grid container spacing={2}>
                     <Grid item xs={12} md={3}>
-                        <ProductFilters onChange={onFilterChanged} />
+                        <ProductFilters onChange={onFilterChanged}/>
                     </Grid>
                     <Grid item xs={12} md={9}>
+
                         {areProductLoading ?
                             <Box sx={{display: 'flex', justifyContent: 'center', height: '100%', alignItems: 'center'}}>
                                 <CircularProgress/>
                             </Box> : <>
+
                                 <ProductList products={products}/>
                                 <div className="flex flex-col items-center">
                                     <Pagination onChange={onPageChanged} currentValue={productsConfig.page}

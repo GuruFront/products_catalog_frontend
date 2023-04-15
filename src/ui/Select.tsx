@@ -27,9 +27,11 @@ const Select = (props: Props) => {
         <FormControl fullWidth size="small" sx={{maxWidth: 300}}>
             <InputLabel id="demo-simple-select-label">{title}</InputLabel>
             <SelectMui
+                sx={{textAlign:'left'}}
                 labelId="demo-simple-select-label"
                 id="demo-simple-select"
                 label="Age"
+                defaultValue={defaultSelect}
                 onChange={(e) => handleChange(e)}
             >
                 <MenuItem value={defaultSelect}>{defaultSelect}</MenuItem>

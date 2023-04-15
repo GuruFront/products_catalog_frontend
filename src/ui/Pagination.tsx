@@ -21,6 +21,7 @@ const Pagination = (props: PaginationProps) => {
 
     return currentProductsCount > 0 ?
         <Pagination2 shape="rounded"
+                     sx={{mb:2}}
                      onChange={(e, i)=>onChange(i)}
                      count={allProductsCount}
                      page={currentValue}

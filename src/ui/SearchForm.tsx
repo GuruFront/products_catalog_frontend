@@ -5,7 +5,6 @@ import Divider from '@mui/material/Divider';
 import IconButton from '@mui/material/IconButton';
 import SearchIcon from '@mui/icons-material/Search';
 import CloseRoundedIcon from '@mui/icons-material/CloseRounded';
-import {purple} from '@mui/material/colors';
 
 type Props = {
     onSumbit: (e: string) => void
@@ -24,11 +23,12 @@ const SearchForm = (props: Props) => {
     return <Paper
         component="form"
         elevation={0}
-        sx={{p: '2px 4px', display: 'flex', alignItems: 'center', mb: 2}}
+        sx={{px: '2px', display: 'flex', alignItems: 'center', mb: 2}}
     >
+
         <InputBase
             onChange={(e) => setValue(e.target.value)}
-            sx={{ml: 1, flex: 1}}
+            sx={{ml: 1, flex: 1, height: 44}}
             placeholder="Search"
             value={value}
         />
