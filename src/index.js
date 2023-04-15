@@ -1,15 +1,14 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.scss';
-import reportWebVitals from './reportWebVitals';
-import { sendToVercelAnalytics } from './vitals';
-import Pages from "./pages";
+import { createRoot } from 'react-dom/client';
+import Pages from './pages';
+import './index.css';
 
-ReactDOM.render(
-  <React.StrictMode>
-    <Pages />
-  </React.StrictMode>,
+const root = createRoot(
   document.getElementById('root')
 );
 
-reportWebVitals(sendToVercelAnalytics);
+root.render(
+  <React.StrictMode>
+      <Pages/>
+  </React.StrictMode>
+);

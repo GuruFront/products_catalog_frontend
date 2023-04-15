@@ -11,19 +11,9 @@ const SearchForm = (props: Props) => {
 
     const {onSumbit} = props;
 
-    const onSearchTextChanged = (e: string) => {
-        setValue(e);
-    }
-
-    const handleSubmit = () => {
-        onSumbit(value)
-    }
-
-    return <div style={{
-        display: 'flex'
-    }}>
-        <Input onChange={onSearchTextChanged} placeholder={'Search'}/>
-        <Button onClick={handleSubmit}>Apply</Button>
+    return <div className={'flex'}>
+        <Input onChange={(str) => setValue(str)} placeholder={'Search'}/>
+        <Button onClick={() => onSumbit(value)}>Apply</Button>
     </div>
 }
 

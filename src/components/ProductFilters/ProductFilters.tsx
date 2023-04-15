@@ -3,7 +3,7 @@ import CheckboxListView from "../../ui/CheckboxListView";
 import {getCategoriesList} from "./api";
 
 
-interface FiltersProps {
+type FiltersProps = {
     onChange: Function
 }
 

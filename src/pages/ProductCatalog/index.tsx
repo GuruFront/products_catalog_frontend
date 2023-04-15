@@ -6,12 +6,13 @@ import {ProductProps} from "../../ui/ProductView";
 import SearchForm from "../../components/SearchForm";
 import Select from "../../ui/Select";
 import {getProducts} from "./api";
+import Loader from "../../ui/Loader";
 
 interface Filters {
     categories: String[]
 }
 
-export interface AllFilters {
+export type AllFilters = {
     page: number,
     searchText: string,
     sortByYear: string,
@@ -45,7 +46,6 @@ const ProductCatalog = () => {
     }, [productsConfig]);
 
 
-
     const onPageChanged = (i: number) => {
         setProductsConfig({...productsConfig, page: productsConfig.page + i})
     }
@@ -65,26 +65,26 @@ const ProductCatalog = () => {
 
     return (
         <>
-            <div className='container py-2 mb-5'>
+            <div className='container mx-auto py-2 mb-5'>
                 <div className={'mb-5'}>
                     <SearchForm onSumbit={onSearchTextChanged}/>
                 </div>
-                <div className={'mb-5 w-full flex'}>
-                    {products.length > 0 && <Select onChange={onSortChanged} values={['Year up', 'Year down']}/>}
+                <div className={'mb-5'}>
+                    {products.length > 0 &&
+                        <Select title={"Sort"} onChange={onSortChanged} values={['Year up', 'Year down']}/>
+                    }
                 </div>
             </div>
-            <div className="container flex px-1">
+            <div className="container mx-auto flex px-1">
                 <ProductFilters onChange={onFilterChanged}/>
-                <div className="w-full bg-white " style={{minHeight: '953px'}}>
-
-                    {areProductLoading ? <div className="loader-container">
-                        <div className="spinner"></div>
-                    </div> : <ProductList products={products}/>}
-
-                    <div className="flex flex-col items-center">
-                        <Pagination onChange={onPageChanged} currentValue={productsConfig.page}
-                                    allProductsCount={itemsCount} currentProductsCount={products.length}/>
-                    </div>
+                <div className="w-full text-center" style={{minHeight: '953px'}}>
+                    {areProductLoading ? <Loader/> : <>
+                        <ProductList products={products}/>
+                        <div className="flex flex-col items-center">
+                            <Pagination onChange={onPageChanged} currentValue={productsConfig.page}
+                                        allProductsCount={itemsCount} currentProductsCount={products.length}/>
+                        </div>
+                    </>}
                 </div>
             </div>
         </>
