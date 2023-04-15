@@ -1,4 +1,9 @@
-import React from "react";
+import * as React from 'react';
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import SelectMui, {SelectChangeEvent} from '@mui/material/Select';
+import {Box} from "@mui/material";
 
 type Props = {
     onChange: (e: string) => void,
@@ -10,29 +15,27 @@ const Select = (props: Props) => {
     const {values, onChange, title = 'Select'} = props;
     const defaultSelect: string = 'Without sort'
 
-    const handleChange = (e: string) => {
-        if (e === defaultSelect) {
+    const handleChange = (e: SelectChangeEvent<any>) => {
+        if (e.target.value === defaultSelect) {
             onChange('')
             return
         }
-        onChange(e);
+        onChange(e.target.value);
     }
 
-    return <>
-        <label htmlFor="countries"
-               className="block text-sm font-medium text-gray-900 dark:text-white  max-w-xs">
-            {title}
-        <select
-            onChange={(e) => handleChange(e.target.value)}
-            id="countries"
-            className="mt-2 bg-gray-50 border border-gray-300 text-gray-900 text-sm
-                rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700
-                dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500
-                dark:focus:border-blue-500">
-            <option>{defaultSelect}</option>
-            {values.map((i,) => <option key={i}>{i}</option>)}
-        </select>
-        </label>
-    </>
+    return <Box sx={{textAlign:'right', mb:4}}>
+        <FormControl fullWidth size="small" sx={{maxWidth: 300}}>
+            <InputLabel id="demo-simple-select-label">{title}</InputLabel>
+            <SelectMui
+                labelId="demo-simple-select-label"
+                id="demo-simple-select"
+                label="Age"
+                onChange={(e) => handleChange(e)}
+            >
+                <MenuItem value={defaultSelect}>{defaultSelect}</MenuItem>
+                {values.map((i,) => <MenuItem value={i} key={i}>{i}</MenuItem>)}
+            </SelectMui>
+        </FormControl>
+    </Box>
 }
 export default Select

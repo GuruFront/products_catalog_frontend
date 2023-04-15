@@ -1,5 +1,9 @@
 import React, {useState} from "react";
-
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
+import CardMedia from '@mui/material/CardMedia';
+import Typography from '@mui/material/Typography';
+import Skeleton from '@mui/material/Skeleton';
 
 export type ProductProps = {
     product: {
@@ -24,28 +28,31 @@ const ProductView = (props: ProductProps) => {
 
     const [isImgLoading, setImgStatus] = useState(true)
 
-    return <a href="#"
-              className="max-w-xs mx-4 mb-5 max-w-xs border-1 py-2 pt-0 border border-gray-200 rounded-lg
-                dark:bg-gray-700 dark:border-gray-600 w-full overflow-hidden">
-        <div
-            className="text-left aspect-h-1 aspect-w-1 w-full overflow-hidden bg-gray-200 xl:aspect-h-8
-                xl:aspect-w-7 border-b">
-            <img
-                onLoad={() => {
-                    setImgStatus(false)
-                }}
-                src={images[0]?.product_img}
-                alt={productdisplayname}
-                className="h-full w-full object-contain object-center group-hover:opacity-75"
-            />
-        </div>
+    return <Card elevation={1}>
+        <CardMedia
+            sx={{height: 229, display: isImgLoading ? 'none' : 'block', objectFit: 'contain'}}
+            component='img'
+            onLoad={(e) => {
+                setImgStatus(false)
+            }}
+            image={images[0]?.product_img}
+            title="green iguana"
+        />
 
-        <div className="px-2">
-            <h3 className="mt-4 text-sm text-gray-700">{productdisplayname}</h3>
-            <p className="mt-1 text-xs font-light text-gray-900"> Collection: {season} {year}</p>
-            <p className="mt-1 text-xs font-light text-gray-900">Color: {basecolour}</p>
-        </div>
-    </a>
+        {isImgLoading ? <Skeleton variant="rectangular" animation="wave" width={'100%'} height={229}/> : null}
+
+        <CardContent sx={{borderTop: '1px solid', borderColor: 'divider', pb: 1}}>
+            <Typography gutterBottom component="div" sx={{height: 45, overflow: 'hidden'}}>
+                {productdisplayname}
+            </Typography>
+            <Typography variant="body2" color="text.secondary" sx={{height: 45, overflow: 'hidden'}}>
+                Collection: {season} {year}
+            </Typography>
+            <Typography variant="body2" color="text.secondary" sx={{height: 45, overflow: 'hidden', pb: 0}}>
+                Color: {basecolour}
+            </Typography>
+        </CardContent>
+    </Card>
 }
 
 export default ProductView

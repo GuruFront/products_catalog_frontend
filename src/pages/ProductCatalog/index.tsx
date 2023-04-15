@@ -1,12 +1,15 @@
 import React, {useEffect, useState} from "react";
 import ProductList from "../../components/ProductList";
 import ProductFilters from "../../components/ProductFilters/ProductFilters";
-import Pagination from "../../components/Pagination";
+import Pagination from "../../ui/Pagination";
 import {ProductProps} from "../../ui/ProductView";
-import SearchForm from "../../components/SearchForm";
+import SearchForm from "../../ui/SearchForm";
 import Select from "../../ui/Select";
 import {getProducts} from "./api";
-import Loader from "../../ui/Loader";
+import CircularProgress from '@mui/material/CircularProgress';
+import {Box, Container, Grid} from "@mui/material";
+import Paper from '@mui/material/Paper';
+import {grey} from "@mui/material/colors";
 
 interface Filters {
     categories: String[]
@@ -22,11 +25,11 @@ export type AllFilters = {
 const ProductCatalog = () => {
 
     const [products, setProducts] = useState<ProductProps[] | []>([]);
-    const [itemsCount, setItemsCount] = useState<number>(0)
+    const [pagesCount, setPagesCount] = useState<number>(0)
     const [areProductLoading, setProductLoading] = useState<boolean>(true)
 
     const [productsConfig, setProductsConfig] = useState<AllFilters>({
-        page: 0,
+        page: 1,
         searchText: '',
         filters: {
             categories: []
@@ -39,7 +42,7 @@ const ProductCatalog = () => {
         getProducts(productsConfig)
             .then(function (response: any) {
                 setProducts(response.data.products)
-                setItemsCount(response.data.itemsCount)
+                setPagesCount(response.data.pagesCount)
                 setProductLoading(false)
             })
 
@@ -47,46 +50,52 @@ const ProductCatalog = () => {
 
 
     const onPageChanged = (i: number) => {
-        setProductsConfig({...productsConfig, page: productsConfig.page + i})
+        setProductsConfig({...productsConfig, page: i})
     }
 
     const onFilterChanged = (filter: Filters) => {
-        setProductsConfig({...productsConfig, filters: filter, page: 0});
+        setProductsConfig({...productsConfig, filters: filter, page: 1});
     }
 
     const onSearchTextChanged = (text: string) => {
-        setProductsConfig({...productsConfig, searchText: text, page: 0});
+        setProductsConfig({...productsConfig, searchText: text, page: 1});
     }
 
     const onSortChanged = (text: string) => {
-        setProductsConfig({...productsConfig, sortByYear: text, page: 0});
+        setProductsConfig({...productsConfig, sortByYear: text, page: 1});
     }
 
 
     return (
         <>
-            <div className='container mx-auto py-2 mb-5'>
-                <div className={'mb-5'}>
-                    <SearchForm onSumbit={onSearchTextChanged}/>
-                </div>
-                <div className={'mb-5'}>
-                    {products.length > 0 &&
-                        <Select title={"Sort"} onChange={onSortChanged} values={['Year up', 'Year down']}/>
-                    }
-                </div>
-            </div>
-            <div className="container mx-auto flex px-1">
-                <ProductFilters onChange={onFilterChanged}/>
-                <div className="w-full text-center" style={{minHeight: '953px'}}>
-                    {areProductLoading ? <Loader/> : <>
-                        <ProductList products={products}/>
-                        <div className="flex flex-col items-center">
-                            <Pagination onChange={onPageChanged} currentValue={productsConfig.page}
-                                        allProductsCount={itemsCount} currentProductsCount={products.length}/>
-                        </div>
-                    </>}
-                </div>
-            </div>
+            <Paper square elevation={5} sx={{p:2,   bgcolor: grey[900]}}>
+                <Container maxWidth="xl">
+                    <SearchForm  onSumbit={onSearchTextChanged}/>
+                </Container>
+            </Paper>
+
+            <Container maxWidth="xl" sx={{my: 3}}>
+                {products.length > 0 &&
+                    <Select title={"Sort"} onChange={onSortChanged} values={['Year up', 'Year down']}/>
+                }
+                <Grid container spacing={2}>
+                    <Grid item xs={12} md={3}>
+                        <ProductFilters onChange={onFilterChanged} />
+                    </Grid>
+                    <Grid item xs={12} md={9}>
+                        {areProductLoading ?
+                            <Box sx={{display: 'flex', justifyContent: 'center', height: '100%', alignItems: 'center'}}>
+                                <CircularProgress/>
+                            </Box> : <>
+                                <ProductList products={products}/>
+                                <div className="flex flex-col items-center">
+                                    <Pagination onChange={onPageChanged} currentValue={productsConfig.page}
+                                                allProductsCount={pagesCount} currentProductsCount={products.length}/>
+                                </div>
+                            </>}
+                    </Grid>
+                </Grid>
+            </Container>
         </>
     );
 }

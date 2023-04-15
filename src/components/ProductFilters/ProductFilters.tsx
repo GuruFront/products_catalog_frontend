@@ -1,6 +1,8 @@
 import React, {useEffect, useState} from "react";
-import CheckboxListView from "../../ui/CheckboxListView";
+import CheckboxList from "../../ui/CheckboxList";
 import {getCategoriesList} from "./api";
+import {Typography} from "@mui/material";
+import Paper from "@mui/material/Paper";
 
 
 type FiltersProps = {
@@ -24,10 +26,10 @@ const ProductFilters = (props: FiltersProps) => {
         });
     }
 
-    return categories.length > 0 ? <div className={'w-full mb-5 max-w-xs'}>
-        <h3 className="mb-4 font-semibold text-gray-900 dark:text-white">Category</h3>
-        <CheckboxListView values={categories} onChange={onfFilterChanged}></CheckboxListView>
-    </div> : null
+    return categories.length > 0 ? <Paper sx={{ border: '1px solid', borderColor: 'divider', p: 2, borderRadius: 2}}>
+        <Typography sx={{ borderBottom: '1px solid', borderColor: 'divider', mx:-2, px:2, pb:1}}> Category </Typography>
+        <CheckboxList values={categories} onChange={onfFilterChanged}></CheckboxList>
+    </Paper> : null
 }
 
 export default ProductFilters
