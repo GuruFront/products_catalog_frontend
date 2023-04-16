@@ -42,13 +42,13 @@ const ProductView = (props: ProductProps) => {
         {isImgLoading ? <Skeleton variant="rectangular" animation="wave" width={'100%'} height={229}/> : null}
 
         <CardContent sx={{borderTop: '1px solid', borderColor: 'divider', pb: 1}}>
-            <Typography gutterBottom component="div" sx={{height: 45, overflow: 'hidden'}}>
+            <Typography gutterBottom noWrap>
                 {productdisplayname}
             </Typography>
-            <Typography variant="body2" color="text.secondary" sx={{height: 45, overflow: 'hidden'}}>
+            <Typography variant="body2" color="text.secondary" noWrap>
                 Collection: {season} {year}
             </Typography>
-            <Typography variant="body2" color="text.secondary" sx={{height: 45, overflow: 'hidden', pb: 0}}>
+            <Typography variant="body2" color="text.secondary" noWrap>
                 Color: {basecolour}
             </Typography>
         </CardContent>

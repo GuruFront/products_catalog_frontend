@@ -70,29 +70,28 @@ const ProductCatalog = () => {
 
     return (
         <>
-            <Paper square elevation={5} sx={{py: 2, bgcolor: grey[900]}}>
+            <Paper square elevation={5} sx={{
+                py: 2, bgcolor: grey[900], position: 'sticky',
+                top: 0,
+                zIndex: 1000
+            }}>
                 <Container maxWidth="xl">
-
                     <SearchForm onSumbit={onSearchTextChanged}/>
                 </Container>
             </Paper>
-
             <Container maxWidth="xl" sx={{my: 3}}>
                 {products.length > 0 &&
                     <Select title={"Sort"} onChange={onSortChanged} values={['Year up', 'Year down']}/>
                 }
-
                 <Grid container spacing={2}>
                     <Grid item xs={12} md={3}>
                         <ProductFilters onChange={onFilterChanged}/>
                     </Grid>
                     <Grid item xs={12} md={9}>
-
                         {areProductLoading ?
                             <Box sx={{display: 'flex', justifyContent: 'center', height: '100%', alignItems: 'center'}}>
                                 <CircularProgress/>
                             </Box> : <>
-
                                 <ProductList products={products}/>
                                 <div className="flex flex-col items-center">
                                     <Pagination onChange={onPageChanged} currentValue={productsConfig.page}
