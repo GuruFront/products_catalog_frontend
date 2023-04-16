@@ -46,7 +46,10 @@ const ProductCatalog = () => {
                 setProducts(response.data.products)
                 setPagesCount(response.data.pagesCount)
                 setProductLoading(false)
-            })
+            }).catch((e) => {
+            setProductLoading(false);
+            console.error(e)
+        })
 
     }, [productsConfig]);
 
