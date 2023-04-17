@@ -33,7 +33,8 @@
     "lint": "eslint src/**/*.{js,jsx,ts,tsx,json}",
     "lint:fix": "eslint --fix src/**/*.{js,jsx,ts,tsx,json}",
     "format": "prettier --write src/**/*.{js,jsx,ts,tsx,css,md,json} --config ./.prettierrc.json",
-    "configure-husky": "npx husky install && npx husky add .husky/pre-commit \"npx --no-install lint-staged\""
+    "configure-husky-pre-commit": "npx husky add .husky/pre-commit \"npx --no-install lint-staged\"",
+    "configure-husky-pre-push": "npx husky add .husky/pre-push \"npm test -- --watchAll=false\""
   },
   "husky": {
     "hooks": {
