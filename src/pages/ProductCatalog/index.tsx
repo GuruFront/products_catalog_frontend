@@ -9,8 +9,7 @@ import { getProducts } from './api'
 import CircularProgress from '@mui/material/CircularProgress'
 import { Box, Container, Grid } from '@mui/material'
 import Paper from '@mui/material/Paper'
-import { grey } from "@mui/material/colors"
-
+import { grey, blueGrey } from '@mui/material/colors'
 
 type Filters = {
   categories: string[]
@@ -97,7 +96,7 @@ const ProductCatalog = () => {
         )}
         <Grid container spacing={2}>
           <Grid item xs={12} md={3}>
-            {/*<ProductFilters onChange={onFilterChanged} />*/}
+            <ProductFilters onChange={onFilterChanged} />
           </Grid>
           <Grid item xs={12} md={9}>
             {areProductLoading ? (
