@@ -21,7 +21,7 @@ const ProductFilters = (props: FiltersProps) => {
   const [categories, setCategories] = useState<string[]>([])
 
   useEffect(() => {
-    getCategoriesList.then(function (response: CategoriesResponse) {
+    getCategoriesList.then(function(response: CategoriesResponse) {
       setCategories(response.data.categories)
     })
   }, [])
@@ -37,11 +37,13 @@ const ProductFilters = (props: FiltersProps) => {
       sx={{ border: '1px solid', borderColor: 'divider', p: 2, borderRadius: 2 }}
       data-component='filter'
     >
-      <Typography sx={{ borderBottom: '1px solid', borderColor: 'divider', mx: -2, px: 2, pb: 1 }}>
-        {' '}
-        Category{' '}
-      </Typography>
-      <CheckboxList values={categories} onChange={onfFilterChanged}></CheckboxList>
+      <div data-component='categories'>
+        <Typography sx={{ borderBottom: '1px solid', borderColor: 'divider', mx: -2, px: 2, pb: 1 }}>
+          {' '}
+          Category{' '}
+        </Typography>
+        <CheckboxList values={categories} onChange={onfFilterChanged}></CheckboxList>
+      </div>
     </Paper>
   ) : null
 }
