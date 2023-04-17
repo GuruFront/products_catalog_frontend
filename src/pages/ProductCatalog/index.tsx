@@ -11,6 +11,7 @@ import { Box, Container, Grid } from '@mui/material'
 import Paper from '@mui/material/Paper'
 import { grey } from '@mui/material/colors'
 
+
 type Filters = {
   categories: string[]
 }
