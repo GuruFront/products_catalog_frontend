@@ -1,36 +1,49 @@
-import React, {useEffect, useState} from "react";
-import CheckboxList from "../../ui/CheckboxList";
-import {getCategoriesList} from "./api";
-import {Typography} from "@mui/material";
-import Paper from "@mui/material/Paper";
+import React, { useEffect, useState } from 'react'
+import CheckboxList from '../../ui/CheckboxList'
+import { getCategoriesList } from './api'
+import { Typography } from '@mui/material'
+import Paper from '@mui/material/Paper'
 
+type CategoriesList = {
+  categories: string[]
+}
 
 type FiltersProps = {
-    onChange: Function
+  onChange: (i: CategoriesList) => void
+}
+
+export type CategoriesResponse = {
+  data: CategoriesList
 }
 
 const ProductFilters = (props: FiltersProps) => {
+  const { onChange } = props
+  const [categories, setCategories] = useState<string[]>([])
 
-    const {onChange} = props;
-    const [categories, setCategories] = useState<String[]>([]);
+  useEffect(() => {
+    getCategoriesList.then(function (response: CategoriesResponse) {
+      setCategories(response.data.categories)
+    })
+  }, [])
 
-    useEffect(() => {
-        getCategoriesList.then(function (response: any) {
-            setCategories(response.data.categories)
-        });
-    }, []);
+  const onfFilterChanged = (checkedValues: string[]) => {
+    onChange({
+      categories: checkedValues,
+    })
+  }
 
-    const onfFilterChanged = (checkedValues: String[]) => {
-        onChange({
-            categories: checkedValues
-        });
-    }
-
-    return categories.length > 0 ? <Paper sx={{ border: '1px solid', borderColor: 'divider', p: 2, borderRadius: 2}}>
-        <Typography sx={{ borderBottom: '1px solid', borderColor: 'divider', mx:-2, px:2, pb:1}}> Category </Typography>
-        <CheckboxList values={categories} onChange={onfFilterChanged}></CheckboxList>
-    </Paper> : null
+  return categories.length > 0 ? (
+    <Paper
+      sx={{ border: '1px solid', borderColor: 'divider', p: 2, borderRadius: 2 }}
+      data-component='filter'
+    >
+      <Typography sx={{ borderBottom: '1px solid', borderColor: 'divider', mx: -2, px: 2, pb: 1 }}>
+        {' '}
+        Category{' '}
+      </Typography>
+      <CheckboxList values={categories} onChange={onfFilterChanged}></CheckboxList>
+    </Paper>
+  ) : null
 }
 
 export default ProductFilters
-
