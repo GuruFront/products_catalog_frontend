@@ -15,7 +15,7 @@ describe('ProductFilters', () => {
     render(<ProductFilters onChange={onChange} />)
     await waitFor(() => {
       expect(screen.getByText('Test 1')).toBeInTheDocument()
-      expect(screen.getByText('Test 3')).toBeInTheDocument()
+      expect(screen.getByText('Test 2')).toBeInTheDocument()
     })
   })
 
