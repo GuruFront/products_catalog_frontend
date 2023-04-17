@@ -1,10 +1,8 @@
-import { defineConfig } from "cypress";
+import { defineConfig } from 'cypress'
 
 export default defineConfig({
-  projectId: "qar9mw",
+  projectId: 'qar9mw',
   e2e: {
-    setupNodeEvents(on, config) {
-      // implement node event listeners here
-    },
+    baseUrl: 'https://products-catalog-frontend.vercel.app',
   },
-});
+})
