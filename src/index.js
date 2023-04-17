@@ -1,12 +1,13 @@
 import React from 'react'
-import { createRoot } from 'react-dom/client'
+import {createRoot} from 'react-dom/client'
 import Pages from './pages'
-import './index.scss'
+import CssBaseline from "@mui/material/CssBaseline";
 
 const root = createRoot(document.getElementById('root'))
 
 root.render(
-  <React.StrictMode>
-    <Pages />
-  </React.StrictMode>,
+    <React.StrictMode>
+        <CssBaseline/>
+        <Pages/>
+    </React.StrictMode>,
 )
