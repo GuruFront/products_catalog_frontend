@@ -96,7 +96,7 @@ const ProductCatalog = () => {
         )}
         <Grid container spacing={2}>
           <Grid item xs={12} md={3}>
-            <ProductFilters onChange={onFilterChanged} />
+            {/*<ProductFilters onChange={onFilterChanged} />*/}
           </Grid>
           <Grid item xs={12} md={9}>
             {areProductLoading ? (
