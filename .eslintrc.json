@@ -23,7 +23,6 @@
     "prettier"
   ],
   "rules": {
-    "no-unused-vars": "error",
     "react/react-in-jsx-scope": "off",
     "camelcase": "error",
     "spaced-comment": "error",
