@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import ProductList from '../../components/ProductList'
-// import ProductFilters from '../../components/ProductFilters/ProductFilters'
+import ProductFilters from '../../components/ProductFilters/ProductFilters'
 import Pagination from '../../ui/Pagination'
 import { Product } from '../../ui/ProductView'
 import SearchForm from '../../ui/SearchForm'
@@ -61,9 +61,9 @@ const ProductCatalog = () => {
     if (productsConfig.page !== i) setProductsConfig({ ...productsConfig, page: i })
   }
 
-  // const onFilterChanged = (filter: Filters) => {
-  //   setProductsConfig({ ...productsConfig, filters: filter, page: 1 })
-  // }
+  const onFilterChanged = (filter: Filters) => {
+    setProductsConfig({ ...productsConfig, filters: filter, page: 1 })
+  }
 
   const onSearchTextChanged = (text: string) => {
     setProductsConfig({ ...productsConfig, searchText: text, page: 1 })
@@ -96,7 +96,7 @@ const ProductCatalog = () => {
         )}
         <Grid container spacing={2}>
           <Grid item xs={12} md={3}>
-            no filters
+            <ProductFilters onChange={onFilterChanged} />
           </Grid>
           <Grid item xs={12} md={9}>
             {areProductLoading ? (
