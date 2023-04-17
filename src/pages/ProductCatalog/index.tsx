@@ -11,7 +11,7 @@ import { Box, Container, Grid } from '@mui/material'
 import Paper from '@mui/material/Paper'
 import { grey } from '@mui/material/colors'
 
-interface Filters {
+type Filters = {
   categories: string[]
 }
 
@@ -72,7 +72,7 @@ const ProductCatalog = () => {
   const onSortChanged = (text: string) => {
     setProductsConfig({ ...productsConfig, sortByYear: text, page: 1 })
   }
-  console.log('products', products)
+
   return (
     <>
       <Paper
