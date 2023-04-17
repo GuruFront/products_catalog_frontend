@@ -1,7 +1,7 @@
 {
   "*.{js,jsx,ts,tsx,scss}": [
-    "eslint --fix *.{js,jsx,ts,tsx}",
-    "prettier --write *.{js,jsx,ts,tsx,css,md} --config ./.prettierrc.json",
+    "eslint --fix src/**/*.{js,jsx,ts,tsx}",
+    "prettier --write src/**/*.{js,jsx,ts,tsx,css,md} --config ./.prettierrc.json",
     "git add"
   ]
 }
