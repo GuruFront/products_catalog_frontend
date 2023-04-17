@@ -9,7 +9,7 @@ import { getProducts } from './api'
 import CircularProgress from '@mui/material/CircularProgress'
 import { Box, Container, Grid } from '@mui/material'
 import Paper from '@mui/material/Paper'
-import { grey } from '@mui/material/colors'
+import { grey } from "@mui/material/colors"
 
 
 type Filters = {
