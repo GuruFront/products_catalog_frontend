@@ -1,7 +1,7 @@
 import React from 'react'
 import { createRoot } from 'react-dom/client'
 import Pages from './pages'
-import CssBaseline from "@mui/material/CssBaseline"
+import CssBaseline from '@mui/material/CssBaseline'
 
 const root = createRoot(document.getElementById('root'))
 
