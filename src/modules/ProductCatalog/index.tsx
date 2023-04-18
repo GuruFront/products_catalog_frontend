@@ -1,3 +1,5 @@
+// TODO: add store to separate model from view/controller
+
 import React, { useEffect, useState } from 'react'
 import { CategoriesResponse } from '../../components/ProductFilters'
 import { Product } from '../../ui/ProductView'

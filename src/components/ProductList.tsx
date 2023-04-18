@@ -23,20 +23,25 @@ const ProductList = (props: ProductListProps) => {
 
   return (
     <>
-      <Grid2 container spacing={2} sx={{ mb: 2 }}>
+      <Grid2
+        container
+        spacing={2}
+        sx={{
+          mb: 2,
+          display: 'flex',
+          height: '100%',
+          justifyContent: 'center',
+          alignItems: 'center',
+          width: '100%',
+        }}
+      >
         {areProductsLoading && (
-          <Box
-            sx={{
-              display: 'flex',
-              justifyContent: 'center',
-              height: '100%',
-              alignItems: 'center',
-            }}
-          >
+          <Box>
             <CircularProgress />
           </Box>
         )}
-        {!areProductsLoading && areProductsExist ? (
+
+        {areProductsExist && !areProductsLoading && (
           <>
             {products?.map((i: Product) => (
               <Grid2 xs={12} sm={6} md={4} lg={4} xl={2} key={i.product_id} sx={{ mb: 2 }}>
@@ -52,7 +57,9 @@ const ProductList = (props: ProductListProps) => {
               />
             </Container>
           </>
-        ) : (
+        )}
+
+        {!areProductsLoading && !areProductsExist && (
           <Typography variant='h5' sx={{ textAlign: 'center', width: '100%' }}>
             Products not found
           </Typography>
