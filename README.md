@@ -1,6 +1,6 @@
 ## Before you start
-Make sure you are familiar with the **"Simple modular"** approach to develop this app.
-Some info about you can find here [frontend-architectures-simple-modular-approach](https://javascript.plainenglish.io/frontend-architectures-simple-modular-approach-7f3b3efe0ecd) 
+Make sure you are familiar with the **"Simple modular"** approach to develop this app. <br>
+Some info about you can find here [frontend-architectures-simple-modular-approach](https://javascript.plainenglish.io/frontend-architectures-simple-modular-approach-7f3b3efe0ecd).<br> 
 Backend you can find here https://github.com/GuruFront/products_catalog_backend.
 
 ## Install dependencies
@@ -13,13 +13,14 @@ In the project directory:
 
 ### `npm run dev`
 
-Runs the app in the development mode. Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Runs the app in the development mode. Open [http://localhost:3000](http://localhost:3000) to view it in your browser.<br>
 The page will reload when you make changes.
 
 ## Tests
 ### `npm test`
 
-Launches the test runner in the interactive watch mode. See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Launches the test runner in the interactive watch mode.<br>
+See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
 ### `cypress open`
 
@@ -36,4 +37,5 @@ Runs the app in the production mode.
 
 Builds the app for production to the `build` folder.
 
-It correctly bundles React in production mode and optimizes the build for the best performance. The build is minified and the filenames include the hashes.
+It correctly bundles React in production mode and optimizes the build for the best performance.<br>
+The build is minified and the filenames include the hashes.
