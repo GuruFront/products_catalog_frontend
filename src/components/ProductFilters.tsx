@@ -69,13 +69,12 @@ const ProductFilters = (props: FiltersProps) => {
             sx={{ mb: -1, transform: `rotate(${show ? '180deg' : 0})`, opacity: 0.54 }}
           />
         </Typography>
-        {show && (
-          <CheckboxList
-            data-testid='filter-category-list'
-            values={categories}
-            onChange={onfFilterChanged}
-          ></CheckboxList>
-        )}
+        <CheckboxList
+          show={show}
+          data-testid='filter-category-list'
+          values={categories}
+          onChange={onfFilterChanged}
+        ></CheckboxList>
       </div>
     </Paper>
   ) : null

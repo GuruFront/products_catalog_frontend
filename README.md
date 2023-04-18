@@ -1,23 +1,36 @@
+## Before you start
+Make sure you are familiar with the **"Simple modular"** approach to develop this app.
+Some info about you can find here [frontend-architectures-simple-modular-approach](https://javascript.plainenglish.io/frontend-architectures-simple-modular-approach-7f3b3efe0ecd) 
+Backend you can find here https://github.com/GuruFront/products_catalog_backend.
+
 ## Install dependencies
 
 In the project directory:
 
 ### `npm install`
 
-## Available Scripts
+## Scripts for a develop mode
 
 ### `npm run dev`
 
 Runs the app in the development mode. Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
-The page will reload when you make changes. You may also see any lint errors in the console.
+The page will reload when you make changes.
+
+## Tests
+### `npm test`
+
+Launches the test runner in the interactive watch mode. See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+
+### `cypress open`
+
+Opens cypress for e2e testing.
+
+
+## Production
 
 ### `npm start`
 
 Runs the app in the production mode.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode. See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
 ### `npm run build`
 

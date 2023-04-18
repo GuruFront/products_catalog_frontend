@@ -9,11 +9,12 @@ type CheckBoxList = {
 
 type CheckBoxProps = CheckBoxList & {
   onChange: (i: string[]) => void
+  show: boolean
 }
 
 const CheckboxList = (props: CheckBoxProps) => {
   const [checkedValues, setCheckedValues] = useState<string[]>([])
-  const { values, onChange } = props
+  const { values, onChange, show } = props
 
   const handleCheckBoxClick = (i: string) => {
     if (checkedValues.includes(i)) {
@@ -29,16 +30,17 @@ const CheckboxList = (props: CheckBoxProps) => {
 
   return (
     <FormGroup>
-      {values?.map((i, index) => {
-        return (
-          <FormControlLabel
-            onChange={handleCheckBoxClick.bind(null, i)}
-            control={<Checkbox />}
-            key={index}
-            label={i}
-          />
-        )
-      })}
+      {show &&
+        values?.map((i, index) => {
+          return (
+            <FormControlLabel
+              onChange={handleCheckBoxClick.bind(null, i)}
+              control={<Checkbox />}
+              key={index}
+              label={i}
+            />
+          )
+        })}
     </FormGroup>
   )
 }
