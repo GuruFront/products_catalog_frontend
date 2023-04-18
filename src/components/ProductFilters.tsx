@@ -3,7 +3,6 @@ import CheckboxList from '../ui/CheckboxList'
 import { Typography } from '@mui/material'
 import Paper from '@mui/material/Paper'
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown'
-import './ProductFilters/index.scss'
 
 export type CategoriesList = {
   categories: string[] | []
