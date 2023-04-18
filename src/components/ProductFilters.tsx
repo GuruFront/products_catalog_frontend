@@ -1,7 +1,9 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import CheckboxList from '../ui/CheckboxList'
 import { Typography } from '@mui/material'
 import Paper from '@mui/material/Paper'
+import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown'
+import './ProductFilters/index.scss'
 
 export type CategoriesList = {
   categories: string[] | []
@@ -17,6 +19,7 @@ export type CategoriesResponse = {
 
 const ProductFilters = (props: FiltersProps) => {
   const { onChange, categories } = props
+  const [show, setShow] = useState<boolean>(true)
 
   const onfFilterChanged = (checkedValues: string[]) => {
     onChange({
@@ -24,19 +27,49 @@ const ProductFilters = (props: FiltersProps) => {
     })
   }
 
+  const handleFilterShow = (width: number) => {
+    if (width < 900 && show) {
+      setShow(false)
+      return
+    }
+
+    if (width >= 900 && !show) {
+      setShow(true)
+      return
+    }
+  }
+
+  useEffect(() => {
+    handleFilterShow(window.innerWidth)
+    window.addEventListener('resize', (e) => {
+      handleFilterShow(window.innerWidth)
+    })
+  }, [])
+
   return categories?.length > 0 ? (
     <Paper
-      sx={{ border: '1px solid', borderColor: 'divider', p: 2, borderRadius: 2 }}
+      sx={{ border: '1px solid', borderColor: 'divider', p: 2, pb: 1, borderRadius: 2 }}
       data-component='filter'
     >
       <div data-component='categories'>
         <Typography
-          sx={{ borderBottom: '1px solid', borderColor: 'divider', mx: -2, px: 2, pb: 1 }}
+          onClick={() => {
+            setShow(!show)
+          }}
+          sx={{
+            borderBottom: ` ${show ? '1' : '0'}px solid`,
+            borderColor: 'divider',
+            mx: -2,
+            px: 2,
+            pb: 1,
+          }}
         >
-          {' '}
           Category{' '}
+          <ArrowDropDownIcon
+            sx={{ mb: -1, transform: `rotate(${show ? '180deg' : 0})`, opacity: 0.54 }}
+          />
         </Typography>
-        <CheckboxList values={categories} onChange={onfFilterChanged}></CheckboxList>
+        {show && <CheckboxList values={categories} onChange={onfFilterChanged}></CheckboxList>}
       </div>
     </Paper>
   ) : null
