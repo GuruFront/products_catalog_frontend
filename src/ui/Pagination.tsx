@@ -14,7 +14,7 @@ const Pagination = (props: PaginationProps) => {
   return currentProductsCount > 0 ? (
     <PaginationMui
       shape='rounded'
-      sx={{ mb: 2 }}
+      sx={{ mb: 2, display: 'flex', justifyContent: 'center' }}
       onChange={(e, i) => onChange(i)}
       count={allProductsCount}
       page={currentValue}
