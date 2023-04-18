@@ -58,6 +58,7 @@ const ProductFilters = (props: FiltersProps) => {
           sx={{
             borderBottom: ` ${show ? '1' : '0'}px solid`,
             borderColor: 'divider',
+            cursor: 'pointer',
             mx: -2,
             px: 2,
             pb: 1,
