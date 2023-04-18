@@ -48,9 +48,9 @@ const ProductFilters = (props: FiltersProps) => {
   return categories?.length > 0 ? (
     <Paper
       sx={{ border: '1px solid', borderColor: 'divider', p: 2, pb: 1, borderRadius: 2 }}
-      data-component='filter'
+      data-testid='filter'
     >
-      <div data-component='categories'>
+      <div data-testid='categories'>
         <Typography
           onClick={() => {
             setShow(!show)
@@ -68,7 +68,13 @@ const ProductFilters = (props: FiltersProps) => {
             sx={{ mb: -1, transform: `rotate(${show ? '180deg' : 0})`, opacity: 0.54 }}
           />
         </Typography>
-        {show && <CheckboxList values={categories} onChange={onfFilterChanged}></CheckboxList>}
+        {show && (
+          <CheckboxList
+            data-testid='filter-category-list'
+            values={categories}
+            onChange={onfFilterChanged}
+          ></CheckboxList>
+        )}
       </div>
     </Paper>
   ) : null

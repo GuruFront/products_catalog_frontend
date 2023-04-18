@@ -1,9 +1,21 @@
-describe('example to-do app', () => {
+describe('check category hides for small screens', () => {
   beforeEach(() => {
+    cy.viewport(600, 600)
     cy.visit('/')
   })
-  //TODO: add any useful test here instead
+
+  it('hide categories', () => {
+    cy.get('[data-testid="categories"] label').should('have.length', 0)
+  })
+})
+
+describe('check category shows for not mobile screens', () => {
+  beforeEach(() => {
+    cy.viewport(900, 900)
+    cy.visit('/')
+  })
+
   it('displays 7 categories', () => {
-    cy.get('[data-component="categories"] label').should('have.length', 7)
+    cy.get('[data-testid="categories"] label').should('have.length', 7)
   })
 })

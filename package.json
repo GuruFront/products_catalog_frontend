@@ -41,7 +41,7 @@
       "pre-commit": "lint-staged"
     }
   },
-  "eslintIgnore": ["*.test.tsx"],
+  "eslintIgnore": ["*.test.tsx", "*.cy.js"],
   "eslintConfig": {
     "extends": [
       "react-app",

@@ -1,5 +1,5 @@
 import axios, { AxiosResponse } from 'axios'
-import { AllFilters } from '../index'
+import { AllFilters } from '../'
 
 const API = process.env.REACT_APP_API
 

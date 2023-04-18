@@ -3,7 +3,7 @@ import ProductCatalog from '../../modules/ProductCatalog'
 const ProductCatalogPage = () => {
   return (
     <>
-      <ProductCatalog></ProductCatalog>
+      <ProductCatalog />
     </>
   )
 }

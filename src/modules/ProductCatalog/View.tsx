@@ -18,23 +18,35 @@ type ViewProductCatalogProps = HeaderProps &
   }
 
 const View = (props: ViewProductCatalogProps) => {
+  const {
+    onSearchTextChanged,
+    onSortChanged,
+    products,
+    categories,
+    onFilterChanged,
+    areProductLoading,
+    onPageChanged,
+    pagesCount,
+    page,
+  } = props
+
   return (
     <>
-      <Header onSearchTextChanged={props.onSearchTextChanged} />
+      <Header onSearchTextChanged={onSearchTextChanged} />
       <Container maxWidth='xl' sx={{ my: 3 }}>
-        <Sort onChange={props.onSortChanged} show={props.products.length > 0} />
+        <Sort onChange={onSortChanged} show={products.length > 0} />
         <Grid container spacing={2}>
           <Grid item xs={12} md={3}>
-            <ProductFilters categories={props.categories} onChange={props.onFilterChanged} />
+            <ProductFilters categories={categories} onChange={onFilterChanged} />
           </Grid>
           <Grid item xs={12} md={9}>
             <ProductList
-              areProductsLoading={props.areProductLoading}
-              products={props.products}
-              onChange={props.onPageChanged}
-              allProductsCount={props.pagesCount}
-              currentProductsCount={props.products.length}
-              currentValue={props.page}
+              areProductsLoading={areProductLoading}
+              products={products}
+              onChange={onPageChanged}
+              allProductsCount={pagesCount}
+              currentProductsCount={products.length}
+              currentValue={page}
             />
           </Grid>
         </Grid>
