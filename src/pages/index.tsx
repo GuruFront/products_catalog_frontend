@@ -1,10 +1,10 @@
 import React from 'react'
-import ProductCatalog from './ProductCatalog/index'
+import ProductCatalogPage from './ProductCatalog'
 
 const Pages = () => {
   return (
     <>
-      <ProductCatalog />
+      <ProductCatalogPage />
     </>
   )
 }

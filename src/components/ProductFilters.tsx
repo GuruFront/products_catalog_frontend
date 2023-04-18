@@ -1,14 +1,13 @@
-import React, { useEffect, useState } from 'react'
-import CheckboxList from '../../ui/CheckboxList'
-import { getCategoriesList } from './api'
+import React from 'react'
+import CheckboxList from '../ui/CheckboxList'
 import { Typography } from '@mui/material'
 import Paper from '@mui/material/Paper'
 
-type CategoriesList = {
-  categories: string[]
+export type CategoriesList = {
+  categories: string[] | []
 }
 
-type FiltersProps = {
+type FiltersProps = CategoriesList & {
   onChange: (i: CategoriesList) => void
 }
 
@@ -17,14 +16,7 @@ export type CategoriesResponse = {
 }
 
 const ProductFilters = (props: FiltersProps) => {
-  const { onChange } = props
-  const [categories, setCategories] = useState<string[]>([])
-
-  useEffect(() => {
-    getCategoriesList.then(function (response: CategoriesResponse) {
-      setCategories(response.data.categories)
-    })
-  }, [])
+  const { onChange, categories } = props
 
   const onfFilterChanged = (checkedValues: string[]) => {
     onChange({
@@ -32,7 +24,7 @@ const ProductFilters = (props: FiltersProps) => {
     })
   }
 
-  return categories.length > 0 ? (
+  return categories?.length > 0 ? (
     <Paper
       sx={{ border: '1px solid', borderColor: 'divider', p: 2, borderRadius: 2 }}
       data-component='filter'
