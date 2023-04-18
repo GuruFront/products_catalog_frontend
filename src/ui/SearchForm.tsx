@@ -19,6 +19,12 @@ const SearchForm = (props: Props) => {
     setValue('')
     onSumbit('')
   }
+  const onEnterPress = (e: { key: string; preventDefault: () => void }) => {
+    if (e.key == 'Enter') {
+      onSumbit(value)
+      e.preventDefault()
+    }
+  }
 
   return (
     <Paper
@@ -31,6 +37,7 @@ const SearchForm = (props: Props) => {
         sx={{ ml: 1, flex: 1, height: 44 }}
         placeholder='Search'
         value={value}
+        onKeyDown={onEnterPress}
       />
       {value.length > 0 ? (
         <>
