@@ -9,5 +9,5 @@ root.render(
   <React.StrictMode>
     <CssBaseline />
     <Pages />
-  </React.StrictMode>,
+  </React.StrictMode>
 )
