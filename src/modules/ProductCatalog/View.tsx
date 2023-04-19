@@ -3,19 +3,19 @@ import { Container, Grid } from '@mui/material'
 import Sort from '../../components/Sort'
 import ProductFilters, { CategoriesList } from '../../components/ProductFilters'
 import ProductList from '../../components/ProductList'
-import React from 'react'
+import React, { useCallback } from 'react'
 import { Product } from '../../ui/ProductView'
 
 type ViewProductCatalogProps = HeaderProps &
   CategoriesList & {
-    onSortChanged: (text: string) => void
-    products: Product[] | []
-    onFilterChanged: (i: CategoriesList) => void
-    areProductLoading: boolean
-    onPageChanged: (i: number) => void
-    pagesCount: number
-    page: number
-  }
+  onSortChanged: (text: string) => void
+  products: Product[] | []
+  onFilterChanged: (i: CategoriesList) => void
+  areProductLoading: boolean
+  onPageChanged: (i: number) => void
+  pagesCount: number
+  page: number
+}
 
 const View = (props: ViewProductCatalogProps) => {
   const {
@@ -30,6 +30,8 @@ const View = (props: ViewProductCatalogProps) => {
     page,
   } = props
 
+  const useCbFilterChanged = useCallback(() => onFilterChanged, [])
+
   return (
     <>
       <Header onSearchTextChanged={onSearchTextChanged} />
@@ -37,7 +39,7 @@ const View = (props: ViewProductCatalogProps) => {
         <Sort onChange={onSortChanged} show={products.length > 0} />
         <Grid container spacing={2}>
           <Grid item xs={12} md={3}>
-            <ProductFilters categories={categories} onChange={onFilterChanged} />
+            <ProductFilters categories={categories} onChange={useCbFilterChanged} />
           </Grid>
           <Grid item xs={12} md={9}>
             <ProductList
