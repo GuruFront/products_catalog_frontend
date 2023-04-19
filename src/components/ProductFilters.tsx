@@ -40,7 +40,7 @@ const ProductFilters = (props: FiltersProps) => {
 
   useEffect(() => {
     handleFilterShow(window.innerWidth)
-    window.addEventListener('resize', (e) => {
+    window.addEventListener('resize', () => {
       handleFilterShow(window.innerWidth)
     })
   }, [])
