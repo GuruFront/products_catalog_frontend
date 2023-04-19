@@ -30,7 +30,6 @@ const View = (props: ViewProductCatalogProps) => {
     page,
   } = props
 
-  const useCbFilterChanged = useCallback(() => onFilterChanged, [])
 
   return (
     <>
@@ -39,7 +38,7 @@ const View = (props: ViewProductCatalogProps) => {
         <Sort onChange={onSortChanged} show={products.length > 0} />
         <Grid container spacing={2}>
           <Grid item xs={12} md={3}>
-            <ProductFilters categories={categories} onChange={useCbFilterChanged} />
+            <ProductFilters categories={categories} onChange={onFilterChanged} />
           </Grid>
           <Grid item xs={12} md={9}>
             <ProductList
