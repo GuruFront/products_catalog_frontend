@@ -39,40 +39,51 @@ const ProductCatalog = () => {
     sortByYear: '',
   })
 
-  useEffect(() => {
-    getCategoriesList.then(function (response: CategoriesResponse) {
+
+  const fetchCategoriesList = () => {
+    getCategoriesList.then(function(response: CategoriesResponse) {
       setCategories(response.data.categories)
     })
-  }, [])
+  }
 
-  useEffect(() => {
+  const fetchProducts = (data: AllFilters) => {
     setProductLoading(true)
-    getProducts(productsConfig)
-      .then(function (response: ProductsResponse) {
+    setProductsConfig({ ...data, filters: { categories: data.filters?.categories ?? [] } })
+    getProducts(data)
+      .then(function(response: ProductsResponse) {
         setProducts(response.data.products)
         setPagesCount(response.data.pagesCount)
-        setProductLoading(false)
       })
       .catch((e) => {
-        setProductLoading(false)
         console.error(e)
-      })
-  }, [productsConfig])
+      }).finally(() => {
+      setProductLoading(false)
+    })
+  }
+
+  useEffect(() => {
+    fetchCategoriesList()
+    fetchProducts(productsConfig)
+  }, [])
 
   const onPageChanged = (i: number) => {
-    if (productsConfig.page !== i) setProductsConfig({ ...productsConfig, page: i })
+    if (productsConfig.page !== i) {
+      fetchProducts({ ...productsConfig, page: i })
+    }
   }
 
   const onFilterChanged = (filter: Filters) => {
-    setProductsConfig({ ...productsConfig, filters: filter, page: 1 })
+    if (filter.categories.length !== productsConfig.filters?.categories.length) {
+      fetchProducts({ ...productsConfig, filters: filter, page: 1 })
+    }
   }
 
   const onSearchTextChanged = (text: string) => {
-    setProductsConfig({ ...productsConfig, searchText: text, page: 1 })
+    fetchProducts({ ...productsConfig, searchText: text, page: 1 })
   }
 
   const onSortChanged = (text: string) => {
-    setProductsConfig({ ...productsConfig, sortByYear: text, page: 1 })
+    fetchProducts({ ...productsConfig, sortByYear: text, page: 1 })
   }
 
   return (

@@ -20,7 +20,8 @@ const ProductFilters = (props: FiltersProps) => {
   const { onChange, categories } = props
   const [show, setShow] = useState<boolean>(true)
 
-  const onfFilterChanged = (checkedValues: string[]) => {
+
+  const onFilterChanged = (checkedValues: string[]) => {
     onChange({
       categories: checkedValues,
     })
@@ -73,7 +74,7 @@ const ProductFilters = (props: FiltersProps) => {
           show={show}
           data-testid='filter-category-list'
           values={categories}
-          onChange={onfFilterChanged}
+          onChange={onFilterChanged}
         ></CheckboxList>
       </div>
     </Paper>

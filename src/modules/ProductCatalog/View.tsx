@@ -3,9 +3,8 @@ import { Container, Grid } from '@mui/material'
 import Sort from '../../components/Sort'
 import ProductFilters, { CategoriesList } from '../../components/ProductFilters'
 import ProductList from '../../components/ProductList'
-import React, { useCallback } from 'react'
+import React from 'react'
 import { Product } from '../../ui/ProductView'
-
 type ViewProductCatalogProps = HeaderProps &
   CategoriesList & {
   onSortChanged: (text: string) => void
